@@ -32,3 +32,4 @@ bin-release/
 *.tcp
 *.toc
 *.tps
+*.gz
