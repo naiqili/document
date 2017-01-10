@@ -1,0 +1,17 @@
+\subsection{Maximum Likelihood Linear Regression for Speaker Adaption of Continuous Density Hidden Markov Models \cite{Leggetter1995}}
+
+Adaption techniques fall into two main categories - speaker normalization in which the input speech is normalized to match the speaker that the system is trained to model, and model adaptation techniques in which the parameters of the model set are adjusted to improved the modelling of the new speaker. This paper proposes a model adaptation technique which uses a set of regression-based transforms to tune the hidden Markov model (HMM) mean parameters to the new speaker.
+
+The basic idea of the maximum likelihood linear regression (MLLR) method is to calculate the transformation matrices to maximize the likelihood of the adaptation data, and can be implemented using the forward-backward algorithm. By tying the transformations among a number of distributions, adaptation can be performed for distributions which are not represented in the training data.
+
+Consider a continuous density HMM system with Gaussian output distribution. A particular distribution, $s$ is characterized by a mean vector, $\mu_s$, and a covariance matrix $C_s$. Given a parameterized speech frame vector $o$, the probability density of the vector is
+$$b_s(o) = \frac{1}{(2\pi)^{n/2} |C_s|^{1/2}} e^{-\frac{1}{2(o - \mu_s)'G_s^{-1}(o-\mu_s)}}.$$
+
+The adaptation of the mean vector is achieved by applying a transformation matrix $W_s$ to the extended mean vector $\xi_s$ to obtain an adapted mean vector $\hat{\mu_s}$: $\hat{\mu_s} = W_s \xi_s$. Here $\xi_s$ is defined as $\xi_s = [\omega, \mu_1, ..., \mu_n]'$, where $\omega$ is the offset term for the regression. For distribution $s$, the probability density function for the adapted system becomes
+$$b_s(o) = \frac{1}{(2\pi)^{n/2} |C_s|^{1/2}} e^{-\frac{1}{2(o - W_s \xi_s)'G_s^{-1}(o-W_s \xi_s)}}.$$
+
+A more general approach is that the same transformation matrix is used for several distributions. The transformation is estimated using data from all the associated tied distributions, so if some of the distributions are not observed in the adaptation data, a transformation may still be applied. The degree of transformation tying is determined by the amount of adaptation data available. For the case of small amounts of adaptation data a global transformation may be used.
+
+The following sections of this paper describes the method in further details, specifically proposes how to use to forward-backward algorithm to train the transformation matrix.
+
+In the experimental study, it is shown that with the proposed method adaptation can be performed using as little as 11s of adaptation data, and that as more data is used the adaptation performance improves. For example, using 40 adaptation utterances, a 37\% reduction in error from the speaker-independent system was achieved with supervised adaptation and a 32\% reduction in unsupervised mode. 

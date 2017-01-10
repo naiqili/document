@@ -1,0 +1,19 @@
+\subsection{Generation Models for Spoken Dialogues \cite{wilcock2003}}
+
+This paper discusses what kind of \emph{generation model} is suitable for spoken dialogue responses, by considering different aspects of the generation component for a spoken dialogue system. It argues that the flexibility needed in spoken dialogue systems can be addressed by a suitable generation model.
+
+The paper begins with a comparison of different existing generation methods: the \emph{machine translation model}, the \emph{text generation model}, and a \emph{template model} used for telephone booking.
+
+In machine translation, the source information is generally viewed as unordered. When this form of bag generation is used for dialogue response generation, the problem is that the information structure, i.e. which information is new and important than the others, is not taken into account as a significant factor during the generation.
+
+In the model of generation adopted in text generation systems, information structure is recognised as a major factor. This model usually has a pipeline architecture, ensuring that topic shifts and old and new information status are properly handled. However, it is designed for producing text which is basically monologue, which is essentially a one-shot process. In spoken interaction, part of the relevant information can be given initially, and the rest can be given later depending on the user's reactions to the first part. So this model is also not suitable for generation in a spoken dialogue system.
+
+Another model of generation, developed for telephone-based booking and ordering systems, is based on the use of dialogue description languages, such as VoiceXML. This model, however, suffers from the disadvantage that it tends to increase the rigidity of the system, by enforcing a form-filling approach which makes the user fit in with the system's demands. Furthermore, information-providing systems often encounter situations where they need to present large amounts of complex information to the user, and need to present this in a way that is accessible and clear. Consequently, dialogue systems should also have more sophisticated models for generation.
+
+The paper then describes the model of generation which the authors advocate for spoken dialogue systems. It is argued that an agenda type of interface is suitable for spoken dialogue systems, in which new information status is already marked up by the dialogue manager.
+
+The model proposed in this paper is called NewInfo-based model. The key idea is that the generator decides how to present new information to the user: whether to present it by itself, or wrap it in appropriate linking information. The choice of wrapping or not depends on the changing dialogue context. When the communication channel is working well, wrapping can be reduced, but when there are uncertainties about what was actually said, wrapping must be increased to provide implicit confirmation.
+
+In this approach, the dialogue manager creates an \emph{Agenda}, which is a set of domain concepts available for use by the generator. The generator can freely use the concepts to realise the system's intention as a surface string, but it is not force to include all the concepts in the response. Since the dialogue manager is responsible for recording dialogue history, it is the best authority to decide the new or old information status of each concept.
+
+Finally, the paper demonstrates the approach with an implemented system. The working system supports incrementality, immediacy and interactivity due to the underlying generation model. It supports the argument that the flexibility needed in spoken dialogue systems can be addressed by a suitable generation model.

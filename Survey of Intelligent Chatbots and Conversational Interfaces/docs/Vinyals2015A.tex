@@ -1,0 +1,19 @@
+\subsection{A neural conversational model \cite{Vinyals2015A}.}
+
+The task is to build end-to-end trainable chatbots that can have multiple rounds of domain-specific or open-domain conversations. The paper applies sequence-to-sequence learning, which uses an encoder to map the input sequence to a fixed-length vector, i.e. the hidden state, and uses a decoder LSTM to decode the output sequence from the vector \cite{Sutskever2014Sequence}.
+
+The encoder that is a multilayer LSTM takes a sequence of words ($x_{1},...,x_{T}$):
+\begin{equation}
+h_{t} \ = \ f( h_{t-1}, x_{t} ) \\
+\end{equation}
+
+Given the last hidden state of encoder, $h_{T}$, the decoder that is another multilayer LSTM computes the probability of generating next word:
+\begin{equation}
+\begin{aligned}
+s_{t} \ =& \ f( s_{t-1}, y_{t-1}, h_{T} ) \\
+y_{t} \ =& \ g( s_{t} )
+\end{aligned}
+\end{equation}
+where $g$ is a softmax function. The encoder stops after generating a special end-of-sentence symbol EOS.
+
+When trained on a domain-specific IT trouble shooting dataset, the chatbot can solve users' IT problems via multi-round conversations. When trained on an open-domain movie transcript dataset, the chatbot can remember facts and common sense knowledge, perform simple forms of reasoning, etc. 

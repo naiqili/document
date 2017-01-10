@@ -1,0 +1,96 @@
+\documentclass[fontsize=18pt]{article} % A4 paper and 11pt font size
+\usepackage{lmodern}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{subfigure}
+%\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{sectsty} % Allows customizing section commands
+\usepackage{hyperref}
+%\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+\usepackage{url}
+
+\usepackage[paperwidth=25in, paperheight=11in, margin=0.5in]{geometry}
+\usepackage{fancyhdr} % Custom headers and footers
+\usepackage{multirow}
+%\usepackage{multicolumn}
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+\setlength{\parskip}{0.5\baselineskip}
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\mL}{\mathcal{L}}
+\newcommand{\mB}{\mathcal{B}}
+\newcommand{\mT}{\mathcal{T}}
+\newcommand{\mS}{\mathcal{S}}
+\newcommand{\mP}{\mathcal{P}}
+\newcommand{\bH}{\mathbb{H}}
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+\graphicspath{{pic/}}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+\newtheorem{definition}{Definition}{\itshape}{\rmfamily}
+\newtheorem{theorem}{Theorem}{\itshape}{\rmfamily}
+\newtheorem{corollary}{Corollary}{\itshape}{\rmfamily}
+\newtheorem{example}{Example}{\itshape}{\rmfamily}
+\newtheorem{proposition}{Proposition}{\itshape}{\rmfamily}
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}%放在导言区
+
+\hypersetup{hidelinks}
+
+\begin{document}
+
+\begin{table}
+\caption{Summary of Task-oriented Spoken Dialogue Systems}
+\begin{tabular}{| p {10em} | p {4em} | p {20em} | p {20em} | p {20em} | p {20em} | p {20em} | p {20em} | p {25em} |}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  System & Year & Task Description & Automatic Speech Recognizer (ASR) & Text-to-speech (TTS) & Dialogue Manager (DM) & Natural Language Understanding (NLU) & Natural Language Generation (NLG) & Training Data \\
+  \hline
+  ConQuest \cite{Bohus2007} & 2007 & Provides technical program information during conferences. Deployed in InterSpeech 2006 and IJCAI 2007. & CMU Sphinx2 \cite{Huang1993}. & Cepstral speech synthesis engine (http://www.cepstral.com). & RavenClaw architecture \cite{Bohus2003}. & Phoenix semantic parser \cite{Ward1994}. & Rosetta, a template-based NLG component. 	& Training data is only used for ASR. It starts with data collected by a text-only prototype. After deployment they collected more data, transcribed it, and retrain the LM. LM used in InterSpeech 2006 were trained on a corpus of 6350 utterances. \\
+  \hline
+  Let's DiSCoH \cite{Lemon2006} &	2006 &	Users are able to call to learn about a conference, including paper submission, program, venue, etc. Designed to be highly portable and flexible across different conferences and workshops. & \multicolumn{5}{l|}{System developed using the AT\&T VoiceTone Spoken Dialogue System tools \cite{Gilbert2005}, which provides services with ASR, SLU, DM and TTS. System uses a fixed set of responses so no NLG component is mentioned.} &	{LM trained by W99 dataset + artificially generated + data from conference website + manually designed (11,275 + 9,511 + 226 + 467 sentences).} \\
+  \hline
+  Let's Go \cite{Raux2005} & 2005 & Provide bus schedule information to the Pittsburgh population during off-peak times. & CMU Sphinx2. &	Techniques in Limited Domain Synthesis \cite{Black2000}. Unit selection concatenative voice specifically designed for domain. &	RavenClaw architecture.  &	Initially uses hand-coded Finite State Grammars. Finally uses tri-gram language models trained on artificial corpora. &	Rosetta. &	Data from real world: 614 dialogues, containing 7936 user turns. Manually transcribed and labeled. \\
+  \hline
+  LARRI \cite{Bohus2002} &	2002 &	A multi-modal system for support of maintenance and repair activities for aircraft mechanics. &	CMU Sphinx2. &	Festival system in a limited domain mode. Use unit-selection synthesizer with a fall back on a diphone voice. &	Behavior is specified through a task-dependent script. AGENDA dialogue manager \cite{Rudnicky1999a}. &	Phoenix semantic parser. &	Rosetta. &	AM trained with WSJ0 corpus. Trigram LM trained with INS BIT Test procedure and general system commands.\\
+  \hline
+  NJFun \cite{Singh2002} &	2002 &	Provide telephone access to a database of activities in New Jersey. &	Watson Speech Recognizer. &	Concatenative diphone synthesis method. &	Train by reinforcement learning (MDP) Build with DMD scripting language \cite{Levin2003}.	& Watson Speech Recognizer. &	Grammar and template. &	Manually obtained by AT\&T employees. 54 subjects for training and 21 for testing. 311 training dialogues, 124 testing dialogues.\\
+  \hline
+  CMU Communicator \cite{Rudnicky1999} &	1999 &	\tabincell{p {20em}}{Helps users create complex travel itineraries (multi-leg flights, hotel and car reservations).\\
+  \url{http://www.speech.cs.cmu.edu/Communicator/index.html} \\ \\ \\ \\} & \tabincell{l}{CMU Sphinx2.\\ \\ \\ \\ \\} &	\tabincell{l}{Festival system in a limited domain mode\\ with concatenative method. \\ \\ \\ \\} &	\tabincell{l}{Behavior is specified through a task-dependent\\ script. AGENDA dialogue manager.  \\ \\ \\ \\} & \tabincell{l}{Phoenix semantic parser. \\ \\ \\ \\ \\} &	\tabincell{l}{Template-driven.\\ \\ \\ \\ \\} &	\tabincell{l}{Data collected in different stages \cite{Eskenazi1999}:\\
+  1)	48 human-human dialogues.\\
+  2)	107 Wizard-of-Oz Ver1 (WOZ).\\
+  3)	2983 from prototype system, manually transcribed.\\
+  4)	16 from WOZ ver2.\\
+  Total 3164 dialogues.}\\
+  \hline
+  \multicolumn{9}{|l|}{There are several other systems whose architectures are similar to that of \cite{Bohus2007, Raux2005, Bohus2002, Rudnicky1999}: RoomLine, Intelligent Procedure Assistant, Vera, MeetingLine, Team Talk, Sublime, Madeleine, RavenCalendar. \url{http://www.cs.cmu.edu/~dbohus/ravenclaw-olympus/systems_overview.html}}\\
+  \hline
+\end{tabular}
+\end{table}
+
+\bibliographystyle{ieeetr}
+\bibliography{d:/research/chatbot}
+
+\end{document}

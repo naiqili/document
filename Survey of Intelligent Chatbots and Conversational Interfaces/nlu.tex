@@ -1,0 +1,18 @@
+\section{Natural Language Understanding}
+
+The \emph{NLU (natural language understanding)} component of dialogue system produces a semantic representation which is appropriate for the dialogue task. Many speech-based dialogue systems are based on the frame-and-slot semantics \cite{Jurafsky2006}. In this circumstance, the task of NLU is equivalent to filling each slot with the correct value, given the information from the upstream ASR component.
+
+In this section, we begin with presenting some classic approaches for NLU, based on rules, grammar and statistic learning \cite{Miller1996,Pieraccini1994,Ward1994}. Although these methods look simple, they suffice to build several non-trivial dialogue systems that are deployed in real world. The work of Rayner \cite{Rayner2003} aims to proposed a method that can combine both the power of rule-based and data-driven approaches. Several other deep learning techniques proposed recently are also closely related with the NLU component \cite{Hermann2013, Kalchbrenner2013}.
+
+In another line of research, NLU is not restricted to discover merely the value of each slot, but take a more ambitious step to translate the given natural sentence to formal logic or database queries \cite{Grefenstette2014}. These NLU techniques are not yet widely applied in SDS.
+
+Another subject closely related to NLU is called the \emph{dialogue state tracking challenge (DSTC)}. We conclude this section with a paper that address the challenge with LSTM network \cite{Zilka2015} which shows that the NLU component is not always necessary.
+
+\input{docs/Miller1996}
+\input{docs/Pieraccini1994}
+\input{docs/Ward1994}
+\input{docs/Rayner2003}
+\input{docs/Hermann2013}
+\input{docs/Kalchbrenner2013}
+\input{docs/Grefenstette2014}
+\input{docs/Zilka2015}

@@ -27,7 +27,6 @@ bin-release/
 *.lof
 *.log
 *.lot
-*.pdf
 *.ps
 *.tcp
 *.toc

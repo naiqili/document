@@ -1,0 +1,15 @@
+\subsection{Recent Improvements in the CMU Spoken Language Understanding System \cite{Ward1994}}
+
+A spoken language system needs to recognize and understand spontaneous speech, which often contains disfluencies and ungrammatical construction. The goal of this paper is to develop a NLU system that can respond appropriately to input, even though coverage is not complete.
+
+The CMU NLU system is called \emph{Phoenix}, which has a loose coupling between the speech recognizer. The recognizer uses stochastic language models to produce a single word string hypothesis. This hypothesis is then passed to a parsing module which uses semantic grammars to produce a semantic representation for the input utterance.
+
+The basic idea of this paper is to use a flexible frame-based parser, which parses as much of the input as possible. The Phoenix system uses \emph{Recursive Transition Networks} to encode semantic grammars. The grammars specify word patterns which correspond to semantic tokens understood by the system. A subset of tokens are considered as top-level tokens, which means they can be recognized independently of surrounding context. Nets call other nets to produces a semantic parse tree. The top-level tokens appear as slots in the frame structures. There is not one large sentential-level grammar, but separate grammars for each slot (there are approximately 70 of these in the ATIS system). The parser is flexible at the slot level in that it allows slots to be filled independent of order.
+
+The parser operates by matching the word patterns for slots against the input text. A set of possible interpretations are pursued simultaneously. The system is implemented as a top-down Recursive Transition Network chart parser for slots. As slot fillers are recognized, they are added to frames to which they apply. At the end of an utterance the parser picks the best scoring frame as the result. The output of the parser is the frame name and the parse trees for its filled slots.
+
+The semantic grammar used for parsing in the ATIS task is developed by processing transcripts of subjects performing scenarios. The data consists of around 20,000 utterances, and a subset of this data (around 10,000 utterances) has been annotated. However, it has a problem with the grammar coverage if it misses one of the content words in the utterance. The paper tries to solve this problem by generalizing the grammar to parse strings that are syntactically similar to the utterances in the training data.
+
+The paper also found it helpful to pursue alternate interpretations, which are not the best according to the heuristics used by the parser. This is achieved by generating a beam of interpretations. The parser still produces the single best interpretation, but keeps track of a number of others. Whenever the backend notices a problem, it asks the parser for another interpretation.
+
+In the experimental study, it is reported that the error rates of the speech recognizer, NLU component and the overall system are 4.4\%, 9.3\% and 13.2\% respectively.

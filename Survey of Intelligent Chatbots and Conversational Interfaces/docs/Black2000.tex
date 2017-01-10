@@ -1,0 +1,33 @@
+\subsection{Limited Domain Synthesis \cite{Black2000}}
+
+This paper presents a reliable and efficient method for building limited domain speech synthesis voices. By constructing databases close to the target domain of the speech application, it uses \emph{unit selection} synthesis techniques to reliably give high quality synthesis within domain.
+
+The task of building a voice consists of the following processes:
+\begin{itemize}
+\item{Design the corpus\\
+The first step is to design a prompt list that adequately covers the domain. In general, prompts should have at least one occurrence of each word in the vocabulary in each prosodic context.
+}
+\item{Synthesize each utterance\\
+The prompts are synthesized for a number of reasons: 1) ensure that all the tokens are expanded properly (e.g. flight numbers and dates); 2) estimate the time required for recording; 3) use the synthesized prompt in labeling the human spoken utterance.
+}
+\item{Record the voice talent\\
+Recording with studio quality equipment gives better results, but the paper is also interested in making the process more accessible. It uses a laptop in a quiet room. The recording quality shows to be acceptable once audio devices are set up appropriately.
+}
+\item{Label the recordings\\
+After recording, it labels the text using a simple but effective technique based on \cite{Malfrere1997}: it uses DTW to align between the mel-scale cepstral coefficients of the synthesized and recorded waveforms.
+}
+\item{Extract pitchmarks
+}
+\item{Extract pitch-synchronous parameters
+}
+\item{Build a cluster unit selection synthesizer\\
+The unit selection technique used in this paper is an updated version of that more fully described in \cite{Black97}. The general algorithm takes all units of the same type and calculates an acoustic distance between each. Selected features including phonetic and prosodic context are used to build a decision tree that minimizes acoustic distance in each partition. At synthesis time, it selects the appropriate cluster using the decision tree, and then finds the best path through the candidates.
+}
+\item{Test and tune, repeating as necessary}
+\end{itemize}
+
+The proposed technique is tested on three domains: a talking clock, a weather report system, and the CMU Communicator system.
+
+The original demonstration of this technique was a simple talking clock. The prompts consist of 24 simple utterances of the form: ``The time is now, a little after quarter past two in the afternoon.'' Not counting recording time, this takes around 3 minutes to build. Such clocks have also been built in languages other than English, such as Chinese.
+
+The most difficult example is the CMU Communicator system. At first it appears that the domain is not closed, as it includes greeting to registered users by name, and allows reference to any airport in the world. For the words like cities and airports, which are essentially open classes, it used the frequency information in the logs to select which set to include in the recordings. For the more frequently mentioned cities it includes more than one occurrence in the prompts. The final voice was built in under one-man week. After the version was running, it made some changes to the language generation system, and constructed further 50 utterances and added them into the system in another morning's work.

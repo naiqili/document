@@ -1,0 +1,21 @@
+\section{Dialogue Manager}
+
+The \emph{DM (dialogue manager)} component typically deals with (1) \emph{state tracking}, which refers to representing information from the past as dialogue states; (2) \emph{action selection} or \emph{dialogue strategy}, which refers to mapping from dialogue states to system actions.
+
+Hand-crafting the dialogue strategy in DM can be quite labor intensive. In order to alleviate the painstaking human efforts, several DM architectures and frameworks are proposed, aiming to allow rapid development of dialog management components for spoken dialog systems operating in complex, goal-oriented domains \cite{Bohus2003,Rudnicky1999a}
+
+Two more sophistigated and successful approaches for strategy learning are \emph{Markov decision process (MDP)} \cite{Levin2000A} and \emph{partially observable Markov decision process (POMDP)} \cite{Young2013Pomdp, Gasic2011}. MDP learns to map dialogue states to actions and does not model the uncertainty about states. To tackle the problem, POMDP maintains a distribution over dialogue, i.e. \emph{belief state}, and based on the distribution actions are chosen. Both MDP and PMDMP methods need to learn in an interactive manner. Schatzmann et al. present a survey of the simulated users \cite{Schatzmann2006}, which are commonly used to create the interactive environment.
+
+The far-reaching deep learning techniques are also significantly influencing the DM research. Williams et. al propose to automatically infer state representation using neural networks \cite{Williams2016End}. Similarly, several other end-to-end systems reach promising performance without hand-crafted features for dialogue states \cite{Bordes2016Learning}. Recurrent neural networks are used to learn how to update the state in a data-driven manner \cite{Henderson2014Word}. Dhingra et al. present a method that combines the reinforcement technique with deep learning \cite{Dhingra2016End}, which is used to built a dialogue agent that provides users with an entity from a knowledge base.
+
+\input{docs/Bohus2003}
+\input{docs/Rudnicky1999a}
+\input{docs/Levin2000A}
+\input{docs/Young2013Pomdp}
+\input{docs/Gasic2011}
+\input{docs/Schatzmann2006}
+\input{docs/Williams2016End}
+\input{docs/Bordes2016Learning}
+\input{docs/Wen2016}
+\input{docs/Henderson2014Word}
+\input{docs/Dhingra2016End}

@@ -1,0 +1,21 @@
+\subsection{Transparent Combination of Rule-based and Data-driven Approaches in a Speech Understanding Architecture \cite{Rayner2003}}
+
+This paper describes a domain-independent semantic interpretation architecture suitable for spoken dialogue systems, which uses a decision-list method to effect a transparent combination of rule-based and data-driven approaches.
+
+The goal of the paper is to propose an architecture which combines rule-based and data-driven methods as transparently as possible. This will allow the system to shift smoothly from an initial version which is entirely rule-based, to a final version which is largely data-driven.
+
+In this paper, \emph{semantic interpretation} is viewed as a statistical \emph{classification} task. There is a set of semantic atoms, each representing a primitive domain concept, and a semantic representation is defined to be a non-empty set of semantic atoms. For example, the semantic representation of the utterance ``show me the sample syringe'' is $\{show, sample\_syringe\}$. As well as specifying the permitted semantic atoms themselves, it also defines a target model which for each atom specifies the other atoms with which it may legitimately combine. For example, $minutes$ may only combine with $correction$, $set\_alarm$ or a number.
+
+Training data consists of a set of utterances, in either text or speech form, each tagged with its intended semantic representation. The paper defines a set of feature extraction rules, each of which associates an utterance with zero or more features. Statistics are then compiled to estimate the probability $p(a | f)$ of each semantic atom $a$ given each separate feature $f$.
+
+In the decoding process, the system is given an utterance $u$, to which the system assigns a representation $R(u)$ consisting of a set of semantic atoms, together with a target model. The decoding process  proceeds as follows:
+\begin{enumerate}
+\item Initialise $R(u)$ to the empty set.
+\item Use the feature extraction rules and the compiled statistics to find the set of triples $\langle f, a, p \rangle$ where $f$ is a feature associated with $u$, $a$ is a semantic atom, and $p$ is the probability $p(a | f)$.
+\item Order the set of triples by the value of $p$, with the largest probabilities first.
+\item Remove the highest-ranked triple $\langle f,a,p \rangle$ from $T$. Add $a$ to $R(u)$ if the probability $p$ is greater than some threshold and $a$ is consistent with $R(u)$.
+\end{enumerate}
+
+The paper describes an open-source toll called $ALTERF$, which implements the abstract procedure introduced above. It shows how the $ALTERF$ system processes the training data, and decodes the given utterance in running time with further details.
+
+In the experimental study, the paper shows that when all the training data is used, the combined system outperforms the rule-based system by 22.2\% to 27.3\%, and outperforms the N-gram system by 22.2\% to 25.6\%. It shows that the proposed method can get a significant improvement on rules-based technique by adding a trainable component. 

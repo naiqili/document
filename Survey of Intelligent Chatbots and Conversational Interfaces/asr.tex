@@ -1,0 +1,17 @@
+\section{Automatic Speech Recognition} \label{Automatic Speech Recognition}
+
+The \emph{ASR (automatic speech recognition)} component takes audio input, generally from a telephone, or from a PDA of desktop microphone, and returns a transcribed string of words \cite{Jurafsky2006}.
+
+Most of the successful ASR systems are based on the mathematical foundation of \emph{hidden Markov models (HMM)}. So we begin this section with presenting a tutorial paper of this subject \cite{Rabiner1989A}. The most successful ASR approach has been \emph{HMM-GMM (Gaussian mixture model)}, until the recent emergence of the \emph{HMM-DNN (deep neural network)} approach. The next two sections present two selected papers of the HMM-DNN method \cite{Hinton2012Deep,Graves2013Speech}. The field of ASR has been investigated for many decades, and lots open-source systems are available. Among the many choices, Kaldi \cite{DanielPovey2014} is drawing more and more attentions due to its perfect support for the DNN techniques. In the fourth and the fifth summaries \cite{Mohri2000,Ljolje1999}, we discuss two important topics that are widely applied in the Kaldi system, namely the \emph{weighted finite-state transducer (WFST)} and \emph{lattice}. 
+
+Paper \cite{Stolcke2000} shows that the ASR performance can be further improved, if we can accurately model the conversation in the specific domain, and this paper is also loosely related with the \emph{natural language understanding (NLU)} component.
+We then briefly introduce a speaker adaption technique \cite{Leggetter1995}.
+
+\input{docs/Rabiner1989A}
+\input{docs/Hinton2012Deep}
+\input{docs/Graves2013Speech}
+\input{docs/Mohri2000}
+\input{docs/Ljolje1999}
+\input{docs/Stolcke2000}
+\input{docs/Leggetter1995}
+

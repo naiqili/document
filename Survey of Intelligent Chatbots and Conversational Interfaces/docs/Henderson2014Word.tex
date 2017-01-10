@@ -1,0 +1,26 @@
+\subsection{Word-based dialog state tracking with recurrent neural networks \cite{Henderson2014Word}}
+
+The task is to converts user inputs into dialogue states (see Table \ref{Goal-Oriented Dialogue System Example} for an example of dialogue state). The dialogue state is a probability distribution over handcrafted goals, methods, and requested slots. The paper uses a RNN to compute the distribution over goal values for each goal, a RNN to compute the distribution over methods, and a RNN to compute the distribution over requested slots. During training, gradient clipping is used to avoid exploding gradients \cite{Pascanu2012Understanding}.
+
+\begin{table}[!hbp]
+\begin{tabular}{|r|rl|}
+\hline
+\textbf{System Output} & \multicolumn{2}{l|}{You can ask for restaurants by area, price range or food type.} \\
+\hline
+\textbf{User Input} & \multicolumn{2}{l|}{Expensive restaurant in the south part of town.} \\
+\hline
+\emph{Dialogue State} & goals
+& 0.7 pricerange=expensive area=south \\
+&& 0.2 pricerange=expensive area=north \\
+& methods & 0.9 method=byconstraints \\
+&& 0.1 method=byalternatives \\
+& requested slots & 0.0 address \\
+&& 0.0 phone \\
+\hline
+\emph{System Act} & \multicolumn{2}{l|}{request(food)} \\
+\hline
+\textbf{System Output} & \multicolumn{2}{l|}{What kind of food would you like?} \\
+\hline
+\end{tabular}
+\caption{Goal-Driven Dialogue System} \label{Goal-Oriented Dialogue System Example}
+\end{table}

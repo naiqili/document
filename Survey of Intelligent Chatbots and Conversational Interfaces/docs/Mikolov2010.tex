@@ -1,0 +1,16 @@
+\subsection{Recurrent Neural Network based Language Model \cite{Mikolov2010}}
+
+This paper proposes a new \emph{recurrent neural network based language model (RNN LM)} with applications to speech recognition. Experimental results indicate that it reduces 50\% perplexity by using mixture of several RNN LMs, and speech recognition experiments show around 18\% reduction of word error rate on the Wall Street Journal task.
+
+This paper uses an architecture that is usually called a \emph{simple recurrent neural network}, which is probably the simplest possible version of RNN, and very easy to implement and train. Let the input to the network at time $t$ be $x(t)$, output is denoted as $y(t)$, and $s(t)$ is the state of the network (hidden layer). Let $\oplus$ denote the concatenating operator. The simple recurrent neural network works by iterating the following equations:
+\begin{align*}
+x(t) &= w(t) \oplus s(t-1)\\
+s_j(t) &= \sigma(\sum_i x_i(t) u_{ji})\\
+y_k(t) &= softmax(\sum_j s_j(t) v_{kj})
+\end{align*}
+
+At each training step, error vector is computed according to cross entropy criterion and weighs are updated with the standard backpropagation algorithm.
+
+The paper further suggests that the network should continue training even during testing phase, and refers to such model as \emph{dynamic}. While in training phase all data are presented to network several times in epochs, dynamic model gets updated just once as it processes testing data. It is shown that such simple technique is enough to obtain large perplexity reductions against static models. Dynamically updated models can thus automatically adapt to new domains.
+
+In the experimental study, the paper evaluates the proposed method on several standard speech recognition tasks. On the WSJ corpus, the proposed model reduces WER by 18\% against 5-gram model with modified Kneser-Ney smoothing. Perplexity reductions are one of the largest ever reported (almost 50\%). In another experiment on the NIST RT05 corpus, it is shown that the proposed model trained on just 5.4M words can outperform backoff models that are trained on hundreds times more data.

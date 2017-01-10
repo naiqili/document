@@ -1,0 +1,18 @@
+\section{Natural Language Generation}
+
+The generation component of a conversational agent chooses the concepts to express to the user, plans out how to express these concepts in words, and assigns any necessary prosody to the words \cite{Jurafsky2006}. In other words, the NLG component generates surface texts based on abstract system actions \cite{Wen2015a}.
+
+We begin with introducing the idea of Wilcock and Jokinen about what should be a good generation models for spoken dialogue systems \cite{wilcock2003}. Many early SDS systems use simple template or grammar methods for generation. In order to made the responses more diverse, statistical-based methods are also introduced \cite{Oh2000}.
+
+One of the most recent important technique in the field of natural langue processing is the word-embedding technique, which learns a distributed representation of each word. In this section, we begin with introducing one of the classic paper of the word-embedding techniques \cite{Bengio2003A}. The next several papers \cite{Wen2015Stochastic, Martens2011, Mikolov2010} show how the new emerged deep learning methods, particularly the recurrent neural networks, are applied in the NLG component.
+ 
+Another kind of language model is based on the (restricted) Boltzmann machine. We introduce the mathematical background of RBM \cite{Bengio2009}, and then present a paper that successfully exploits this technique \cite{Mnih2007}. %Several other DNN based language models will also be presented \cite{Mnih2007}.
+
+\input{docs/wilcock2003}
+\input{docs/Oh2000}
+\input{docs/Bengio2003A}
+\input{docs/Wen2015Stochastic}
+\input{docs/Martens2011}
+\input{docs/Mikolov2010}
+\input{docs/Bengio2009}
+\input{docs/Mnih2007}
